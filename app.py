@@ -1,7 +1,7 @@
 import gradio as gr
 from huggingface_hub import InferenceClient
 from transformers import pipeline
-import pytorch
+import torch
 
 """
 For more information on `huggingface_hub` Inference API support, please check the docs: https://huggingface.co/docs/huggingface_hub/v0.22.2/en/guides/inference
