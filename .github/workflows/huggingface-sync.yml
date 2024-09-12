@@ -21,10 +21,9 @@ jobs:
         run: |
           pip install huggingface_hub
 
-      - name: Push to Hugging Face
+            - name: Push to Hugging Face
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          huggingface-cli login --token $HF_TOKEN
-          # Replace the repo ID with your Hugging Face repo path
+          echo "$HF_TOKEN" | huggingface-cli login --token
           huggingface-cli upload --repo-id h124135417/cat_dog_bot --commit-message "Sync from GitHub" --path . --all-files
