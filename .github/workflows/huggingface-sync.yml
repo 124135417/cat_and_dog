@@ -1,32 +1,18 @@
-name: Sync with Hugging Face
+name: Sync to Hugging Face hub
 
 on:
   push:
-    branches:
-      - main  # Adjust to the branch you want to trigger this action
+    branches: [main]
+
+  # To run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
-  upload_to_hf:
+  sync-to-hub:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
-
-      - name: Install Hugging Face CLI
-        run: |
-          pip install huggingface_hub
-
-      - name: Login to Hugging Face
+      - uses: actions/checkout@v3
+      - name: Push to Hugging Face
         env:
           HT_TOKEN: ${{ secrets.HT_TOKEN }}
-        run: |
-          huggingface-cli login --token $HT_TOKEN
-
-      - name: Push to Hugging Face
-        run: |
-          huggingface-cli repo upload . --commit-message "Sync from GitHub"
+        run: git push --force https://h124135417:$HT_TOKEN@huggingface.co/spaces/h124135417/cat_dog_bot main
