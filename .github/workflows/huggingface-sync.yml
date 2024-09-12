@@ -23,7 +23,7 @@ jobs:
 
       - name: Login to Hugging Face
         env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HT_TOKEN: ${{ secrets.HT_TOKEN }}
         run: |
           huggingface-cli login --token $HT_TOKEN
 
