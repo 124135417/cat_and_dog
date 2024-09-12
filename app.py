@@ -18,7 +18,7 @@ def respond(message, history, role):
     system_message = roles[role]
 
     prompt = f"{system_message}\nUser: {message}\nAssistant:"
-    output = pipe(prompt)
+    output = pipe(prompt, max_new_tokens=100)
 
     response = output[0]['generated_text'].split("Assistant:")[-1].strip()
 
