@@ -29,4 +29,4 @@ jobs:
 
       - name: Push to Hugging Face
         run: |
-          huggingface-cli upload --repo-id h124135417/cat_dog_bot --commit-message "Sync from GitHub" --path . --all-files
+          huggingface-cli repo upload . --repo-id h124135417/cat_dog_bot --commit-message "Sync from GitHub" --include-all-files
