@@ -1,0 +1,30 @@
+name: Sync with Hugging Face
+
+on:
+  push:
+    branches:
+      - main  # Adjust to the branch you want to trigger this action
+
+jobs:
+  upload_to_hf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install Hugging Face CLI
+        run: |
+          pip install huggingface_hub
+
+      - name: Push to Hugging Face
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          huggingface-cli login --token $HF_TOKEN
+          # Replace the repo ID with your Hugging Face repo path
+          huggingface-cli upload --repo-id h124135417/cat_dog_bot --commit-message "Sync from GitHub" --path . --all-files
