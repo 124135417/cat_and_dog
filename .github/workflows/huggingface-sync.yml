@@ -23,7 +23,7 @@ jobs:
 
       - name: Push to Hugging Face
         env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HUGGINGFACE_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          huggingface-cli login --token $HF_TOKEN
+          huggingface-cli login
           huggingface-cli upload --repo-id h124135417/cat_dog_bot --commit-message "Sync from GitHub" --path . --all-files
