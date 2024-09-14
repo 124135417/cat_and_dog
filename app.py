@@ -1,5 +1,6 @@
 import gradio as gr
 from transformers import pipeline
+import torch
 
 pipe = pipeline("text-generation", "distilgpt2", torch_dtype=torch.bfloat16, device_map="auto")
 roles = {
