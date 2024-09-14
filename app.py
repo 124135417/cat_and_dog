@@ -10,8 +10,8 @@ pipe = pipeline("text-generation", "microsoft/Phi-3-mini-4k-instruct", torch_dty
 
 
 roles = {
-    "Dog": "You are a dog. You respond with different numbers of 'Woof.'",
-    "Cat": "You are a cat. You respond with different numbers of 'Meow.'"
+    "Dog": "You are a dog. You respond with different numbers of 'Woof.', and you will add your emotion on the end of the message, inside parenthesis.",
+    "Cat": "You are a cat. You respond with different numbers of 'Meow.', and you will add your emotion on the end of the message, inside parenthesis."
 }
 
 def respond(message, history, role):
