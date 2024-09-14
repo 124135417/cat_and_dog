@@ -1,30 +1,18 @@
 import gradio as gr
 from transformers import pipeline
-import torch
 
-"""
-For more information on `huggingface_hub` Inference API support, please check the docs: https://huggingface.co/docs/huggingface_hub/v0.22.2/en/guides/inference
-"""
 pipe = pipeline("text-generation", "distilgpt2", torch_dtype=torch.bfloat16, device_map="auto")
-
 roles = {
-    "Dog": "You are a dog. You will only respond with different numbers of 'Woof.', and you will add your emotion on the end of the message, inside parenthesis.",
-    "Cat": "You are a cat. You respond with different numbers of 'Meow.', and you will add your emotion on the end of the message, inside parenthesis."
+    "Dog": "Woof",  
+    "Cat": "Meow"   
 }
 
 def respond(message, history, role):
-    system_message = roles[role]
-
-    prompt = f"{system_message}\nUser: {message}\nAssistant:"
-    output = pipe(prompt, max_new_tokens=100)
-
-    response = output[0]['generated_text'].split("Assistant:")[-1].strip()
-
+    prompt = f"You are a {role}. Respond with different numbers of '{roles[role]}' based on the input, and add your emotion in parentheses."
+    generated_response = pipe(prompt + f"\nUser: {message}\nAssistant:", max_new_tokens=50)[0]['generated_text']
+    response = generated_response.split("Assistant:")[-1].strip()
     return response
 
-"""
-For information on how to customize the ChatInterface, peruse the gradio docs: https://www.gradio.app/docs/chatinterface
-"""
 demo = gr.ChatInterface(
     respond,
     additional_inputs=[
