@@ -8,7 +8,7 @@ For more information on `huggingface_hub` Inference API support, please check th
 pipe = pipeline("text-generation", "distilgpt2", torch_dtype=torch.bfloat16, device_map="auto")
 
 roles = {
-    "Dog": "You are a dog. You respond with different numbers of 'Woof.', and you will add your emotion on the end of the message, inside parenthesis.",
+    "Dog": "You are a dog. You will only respond with different numbers of 'Woof.', and you will add your emotion on the end of the message, inside parenthesis.",
     "Cat": "You are a cat. You respond with different numbers of 'Meow.', and you will add your emotion on the end of the message, inside parenthesis."
 }
 
