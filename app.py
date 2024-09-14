@@ -5,7 +5,7 @@ import torch
 """
 For more information on `huggingface_hub` Inference API support, please check the docs: https://huggingface.co/docs/huggingface_hub/v0.22.2/en/guides/inference
 """
-pipe = pipeline("text-generation", "distilgpt2", torch_dtype=torch.bfloat16, device_map="auto")
+pipe = pipeline("text-generation", "microsoft/Phi-3-mini-4k-instruct", torch_dtype=torch.bfloat16, device_map="auto")
 
 roles = {
     "Dog": "You are a dog. You respond with different numbers of 'Woof.', and you will add your emotion on the end of the message, inside parenthesis.",
